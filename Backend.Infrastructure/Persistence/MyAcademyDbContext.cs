@@ -20,8 +20,10 @@ public sealed class MyAcademyDbContext(DbContextOptions<MyAcademyDbContext> opti
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Calls the base method to ensure any configurations from the base class (DbContext) are applied
         base.OnModelCreating(modelBuilder);
 
+        // Register all IEntityTypeConfiguration classes  in this project
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(MyAcademyDbContext).Assembly);
     }
 }
