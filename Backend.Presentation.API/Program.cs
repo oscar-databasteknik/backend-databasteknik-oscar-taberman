@@ -1,4 +1,6 @@
+using Backend.Application.Repositories;
 using Backend.Infrastructure.Persistence;
+using Backend.Infrastructure.Persistence.Repositories;
 using Backend.Presentation.API.Dtos;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<MyAcademyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyAcademyConnection")));
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddCors();
 
 var app = builder.Build();
