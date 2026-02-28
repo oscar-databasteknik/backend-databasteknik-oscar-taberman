@@ -47,10 +47,7 @@ public sealed class CourseRepository(MyAcademyDbContext database) : ICourseRepos
 
     public async Task DeleteCourseAsync(Guid courseId, CancellationToken ct)
     {
-        if (courseId == Guid.Empty)
-            throw new ArgumentException("Course Id cannot be empty.", nameof(courseId));
-
-        var course = await database.Courses.SingleOrDefaultAsync(c => c.Id == courseId, ct)
+        var course = await GetCourseByIdAsync(courseId, ct)
             ?? throw new KeyNotFoundException($"Course Id {courseId} not found.");
 
         database.Courses.Remove(course);

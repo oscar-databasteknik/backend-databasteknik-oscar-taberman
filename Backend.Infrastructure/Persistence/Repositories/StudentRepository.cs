@@ -37,8 +37,6 @@ public sealed class StudentRepository(MyAcademyDbContext database) : IStudentRep
     public async Task UpdateStudentAsync(Student student, CancellationToken ct)
     {
         var studentUpdate = await database.Students
-            .Include(s => s.ContactInformation)
-            .Include(s => s.Enrollments)
             .SingleOrDefaultAsync(s => s.Id == student.Id, ct)
             ?? throw new KeyNotFoundException($"Student Id {student.Id} not found.");
 

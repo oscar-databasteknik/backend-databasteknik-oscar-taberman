@@ -37,8 +37,6 @@ public sealed class TeacherRepository(MyAcademyDbContext database) : ITeacherRep
     public async Task UpdateTeacherAsync(Teacher teacher, CancellationToken ct)
     {
         var teacherUpdate = await database.Teachers
-            .Include(t => t.ContactInformation)
-            .Include(t => t.CourseTeachers)
             .SingleOrDefaultAsync(t => t.Id == teacher.Id, ct)
             ?? throw new KeyNotFoundException($"Teacher Id {teacher.Id} not found.");
 
