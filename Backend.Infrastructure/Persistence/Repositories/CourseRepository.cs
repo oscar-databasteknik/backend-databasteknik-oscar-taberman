@@ -33,17 +33,14 @@ public sealed class CourseRepository(MyAcademyDbContext database) : ICourseRepos
         return course;
     }
 
-    public async Task UpdateCourseAsync(Course courseId, CancellationToken ct)
+    public async Task UpdateCourseAsync(Course course, CancellationToken ct)
     {
-        if (courseId.Id == Guid.Empty)
-            throw new ArgumentException("Course Id cannot be empty.", nameof(courseId.Id));
+        var courseUpdate = await GetCourseByIdAsync(course.Id, ct)
+            ?? throw new KeyNotFoundException($"Course Id {course.Id} not found.");
 
-        var course = await database.Courses.SingleOrDefaultAsync(c => c.Id == courseId.Id, ct)
-            ?? throw new KeyNotFoundException($"Course Id {courseId.Id} not found.");
-
-        course.Title = courseId.Title;
-        course.Description = courseId.Description;
-        course.Duration = courseId.Duration;
+        courseUpdate.Title = course.Title;
+        courseUpdate.Description = course.Description;
+        courseUpdate.Duration = course.Duration;
 
         await database.SaveChangesAsync(ct);
     }
