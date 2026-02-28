@@ -9,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<MyAcademyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyAcademyConnection")));
-builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>()
+                .AddScoped<ITeacherRepository, TeacherRepository>()
+                .AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddCors();
 
 var app = builder.Build();
