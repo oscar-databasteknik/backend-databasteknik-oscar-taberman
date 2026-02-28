@@ -4,9 +4,9 @@ namespace Backend.Application.Repositories;
 
 public interface IStudentRepository
 {
-    Task AddStudentAsync(Student student);
-    Task<Student?> GetStudentByIdAsync(Guid studentId);
-    Task<IEnumerable<Student>> GetAllStudentsAsync();
-    Task UpdateStudentAsync(Student student);
-    Task DeleteStudentAsync(Guid studentId);
+    Task AddStudentAsync(Student student, CancellationToken ct);
+    Task<Student?> GetStudentByIdAsync(Guid studentId, CancellationToken ct);
+    Task<IEnumerable<Student>> GetAllStudentsAsync(CancellationToken ct);
+    Task UpdateStudentAsync(Student student, CancellationToken ct);
+    Task DeleteStudentAsync(Guid studentId, CancellationToken ct);
 }
