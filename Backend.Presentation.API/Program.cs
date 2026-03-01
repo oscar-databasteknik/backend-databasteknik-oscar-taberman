@@ -13,7 +13,8 @@ builder.Services.AddDbContext<MyAcademyDbContext>(options => options.UseSqlServe
 builder.Services.AddScoped<ICourseRepository, CourseRepository>()
                 .AddScoped<ITeacherRepository, TeacherRepository>()
                 .AddScoped<IStudentRepository, StudentRepository>()
-                .AddScoped<IClassroomRepository, ClassroomRepository>();
+                .AddScoped<IClassroomRepository, ClassroomRepository>()
+                .AddScoped<ICourseSessionRepository, CourseSessionRepository>();
 builder.Services.AddCors();
 
 var app = builder.Build();
@@ -27,6 +28,8 @@ app.MapCourseEndpoints();
 app.MapTeacherEndpoints();
 app.MapStudentEndpoints();
 app.MapClassroomEndpoints();
+app.MapCourseSessionEndpoints();
+
 
 app.MapGet("/api/heroes", (HttpRequest request) =>
 {
