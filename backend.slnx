@@ -3,4 +3,5 @@
   <Project Path="Backend.Domain/Backend.Domain.csproj" />
   <Project Path="Backend.Infrastructure/Backend.Infrastructure.csproj" />
   <Project Path="Backend.Presentation.API/Backend.Presentation.API.csproj" />
+  <Project Path="Tests/Backend.Tests.csproj" Id="cba59925-efde-4ee1-9399-2b26d651db7b" />
 </Solution>
