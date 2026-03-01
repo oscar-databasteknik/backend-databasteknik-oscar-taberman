@@ -2,6 +2,7 @@ using Backend.Application.Repositories;
 using Backend.Infrastructure.Persistence;
 using Backend.Infrastructure.Persistence.Repositories;
 using Backend.Presentation.API.Dtos;
+using Backend.Presentation.API.Endpoints;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ app.UseHttpsRedirection();
 app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseStaticFiles();
 
+app.MapCourseEndpoints();
 
 app.MapGet("/api/heroes", (HttpRequest request) =>
 {
