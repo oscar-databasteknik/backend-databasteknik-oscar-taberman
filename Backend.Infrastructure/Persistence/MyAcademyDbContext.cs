@@ -18,6 +18,8 @@ public sealed class MyAcademyDbContext(DbContextOptions<MyAcademyDbContext> opti
     public DbSet<StudentContactInformation> StudentContactInformations => Set<StudentContactInformation>();
     public DbSet<TeacherContactInformation> TeacherContactInformations => Set<TeacherContactInformation>();
 
+    public DbSet<Classroom> Classrooms => Set<Classroom>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Calls the base method to ensure any configurations from the base class (DbContext) are applied

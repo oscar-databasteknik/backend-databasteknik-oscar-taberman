@@ -17,4 +17,6 @@ public sealed class CourseSession
 
     // many <-> many
     public List<Enrollment> Enrollments { get; set; } = [];
+    public Guid ClassroomId { get; set; }
+    public Classroom Classroom { get; set; } = null!;
 }

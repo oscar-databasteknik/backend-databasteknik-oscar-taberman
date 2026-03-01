@@ -1,4 +1,4 @@
-﻿using Backend.Domain.Entities;
+﻿namespace Backend.Domain.Entities;
 
 public sealed class CourseCategory
 {

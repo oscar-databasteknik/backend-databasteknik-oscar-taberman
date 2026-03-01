@@ -12,7 +12,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<MyAcademyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyAcademyConnection")));
 builder.Services.AddScoped<ICourseRepository, CourseRepository>()
                 .AddScoped<ITeacherRepository, TeacherRepository>()
-                .AddScoped<IStudentRepository, StudentRepository>();
+                .AddScoped<IStudentRepository, StudentRepository>()
+                .AddScoped<IClassroomRepository, ClassroomRepository>();
 builder.Services.AddCors();
 
 var app = builder.Build();
@@ -25,6 +26,7 @@ app.UseStaticFiles();
 app.MapCourseEndpoints();
 app.MapTeacherEndpoints();
 app.MapStudentEndpoints();
+app.MapClassroomEndpoints();
 
 app.MapGet("/api/heroes", (HttpRequest request) =>
 {

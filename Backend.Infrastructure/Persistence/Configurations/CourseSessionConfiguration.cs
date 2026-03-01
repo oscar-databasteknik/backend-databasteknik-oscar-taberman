@@ -23,5 +23,13 @@ public sealed class CourseSessionConfiguration : IEntityTypeConfiguration<Course
                .WithMany(x => x.Sessions)
                .HasForeignKey(x => x.CourseId)
                .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Property(x => x.ClassroomId)
+               .IsRequired();
+
+        builder.HasOne(x => x.Classroom)
+               .WithMany(c => c.Sessions)
+               .HasForeignKey(x => x.ClassroomId)
+               .OnDelete(DeleteBehavior.Restrict);
     }
 }
