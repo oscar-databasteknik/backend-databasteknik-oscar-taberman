@@ -34,15 +34,6 @@ public sealed class CourseSessionRepository(MyAcademyDbContext database) : ICour
 
     public async Task UpdateCourseSessionAsync(CourseSession session, CancellationToken ct)
     {
-        var existing = await database.CourseSessions.SingleOrDefaultAsync(cs => cs.Id == session.Id, ct);
-        if (existing is null) return;
-
-        existing.CourseId = session.CourseId;
-        existing.ClassroomId = session.ClassroomId;
-        existing.StartDate = session.StartDate;
-        existing.EndDate = session.EndDate;
-        existing.MaxParticipants = session.MaxParticipants;
-
         await database.SaveChangesAsync(ct);
     }
 
