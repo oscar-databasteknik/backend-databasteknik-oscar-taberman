@@ -23,6 +23,8 @@ app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseStaticFiles();
 
 app.MapCourseEndpoints();
+app.MapTeacherEndpoints();
+app.MapStudentEndpoints();
 
 app.MapGet("/api/heroes", (HttpRequest request) =>
 {
