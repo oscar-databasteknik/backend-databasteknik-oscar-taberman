@@ -6,7 +6,7 @@ public sealed class Student
 
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
-    public string? PersonalNumber { get; set; }
+    public string PersonalNumber { get; set; } = null!;
 
     // many <-> many
     public List<Enrollment> Enrollments { get; set; } = [];

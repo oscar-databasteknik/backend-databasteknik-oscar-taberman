@@ -3,21 +3,21 @@
 public sealed record StudentResponse
 (
     Guid Id,
-    string Title,
-    string Description,
-    int Duration
+    string FirstName,
+    string LastName,
+    string PersonalNumber
 );
 
 public sealed record CreateStudentRequest
 (
-    string Title,
-    string Description,
-    int Duration
+    string FirstName,
+    string LastName,
+    string PersonalNumber
 );
 
 public sealed record UpdateStudentRequest
 (
-    string Title,
-    string Description,
-    int Duration
+    string FirstName,
+    string LastName,
+    string PersonalNumber
 );

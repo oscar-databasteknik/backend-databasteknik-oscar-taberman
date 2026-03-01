@@ -3,21 +3,21 @@
 public sealed record TeacherResponse
 (
     Guid Id,
-    string Title,
-    string Description,
-    int Duration
+    string FirstName,
+    string LastName,
+    string PersonalNumber
 );
 
 public sealed record CreateTeacherRequest
 (
-    string Title,
-    string Description,
-    int Duration
+    string FirstName,
+    string LastName,
+    string PersonalNumber
 );
 
 public sealed record UpdateTeacherRequest
 (
-    string Title,
-    string Description,
-    int Duration
+    string FirstName,
+    string LastName,
+    string PersonalNumber
 );

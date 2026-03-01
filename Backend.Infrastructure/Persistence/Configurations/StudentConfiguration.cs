@@ -19,6 +19,7 @@ public sealed class StudentConfiguration : IEntityTypeConfiguration<Student>
                .HasMaxLength(100);
 
         builder.Property(x => x.PersonalNumber)
+               .IsRequired()
                .HasMaxLength(20);
 
         builder.HasOne(x => x.ContactInformation)
