@@ -15,6 +15,7 @@ builder.Services.AddScoped<ICourseRepository, CourseRepository>()
                 .AddScoped<IStudentRepository, StudentRepository>()
                 .AddScoped<IClassroomRepository, ClassroomRepository>()
                 .AddScoped<ICourseSessionRepository, CourseSessionRepository>();
+builder.Services.AddMemoryCache();
 builder.Services.AddCors();
 
 var app = builder.Build();
@@ -23,6 +24,7 @@ app.MapOpenApi();
 app.UseHttpsRedirection();
 app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseStaticFiles();
+
 
 app.MapCourseEndpoints();
 app.MapTeacherEndpoints();
