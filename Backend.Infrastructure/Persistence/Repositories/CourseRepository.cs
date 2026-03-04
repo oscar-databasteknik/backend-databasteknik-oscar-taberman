@@ -46,4 +46,10 @@ public sealed class CourseRepository(MyAcademyDbContext database) : ICourseRepos
         database.Courses.Remove(course);
         await database.SaveChangesAsync(ct);
     }
+
+    public async Task<List<Course>> GetCoursesLongerThanDurationAsync(int minDuration, CancellationToken ct)
+    {
+        var courses = await database.Courses.FromSqlInterpolated($"SELECT * FROM Courses WHERE Duration > {minDuration}").AsNoTracking().ToListAsync(ct);
+        return courses;
+    }
 }

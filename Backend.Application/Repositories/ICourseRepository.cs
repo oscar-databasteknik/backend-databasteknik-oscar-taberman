@@ -9,4 +9,6 @@ public interface ICourseRepository
     Task<IEnumerable<Course>> GetAllCoursesAsync(CancellationToken ct);
     Task UpdateCourseAsync(Course course, CancellationToken ct);
     Task DeleteCourseAsync(Guid courseId, CancellationToken ct);
+
+    Task<List<Course>> GetCoursesLongerThanDurationAsync(int minDuration, CancellationToken ct);
 }

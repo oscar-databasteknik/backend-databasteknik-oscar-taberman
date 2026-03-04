@@ -14,10 +14,11 @@ public static class CourseEndpoints
             app.MapPost("/api/courses", AddCourseAsync);
             app.MapPut("/api/courses/{id:guid}", UpdateCourseAsync);
             app.MapDelete("/api/courses/{id:guid}", DeleteCourseAsync);
-        }
-        
-        //GET ALL
-        private static async Task<IResult> GetAllCoursesAsync(ICourseRepository repo, CancellationToken ct)
+            app.MapGet("/api/courses/longer-than/{minDuration:int}", GetCoursesLongerThanDurationAsync);
+    }
+
+    //GET ALL
+    private static async Task<IResult> GetAllCoursesAsync(ICourseRepository repo, CancellationToken ct)
         {
             var courses = await repo.GetAllCoursesAsync(ct);
             var response = courses.Select(c => c.ToCourseResponse()).ToList();
@@ -29,7 +30,7 @@ public static class CourseEndpoints
         {
             var course = await repo.GetCourseByIdAsync(id, ct);
             return course is null ? Results.NotFound() : Results.Ok(course.ToCourseResponse());
-    }
+        }
         
         //POST
         private static async Task<IResult> AddCourseAsync(CreateCourseRequest request, ICourseRepository repo, CancellationToken ct)
@@ -76,5 +77,18 @@ public static class CourseEndpoints
             await repo.DeleteCourseAsync(id, ct);
 
             return Results.NoContent();
+        }
+
+        //GET
+        private static async Task<IResult> GetCoursesLongerThanDurationAsync(int minDuration, ICourseRepository repo, CancellationToken ct)
+        {
+            if (minDuration <= 0)
+                return Results.BadRequest("The minimum duration must be greater than zero");
+
+            var courses = await repo.GetCoursesLongerThanDurationAsync(minDuration, ct);
+
+            var response = courses.Select(c => c.ToCourseResponse()).ToList();
+
+            return Results.Ok(response);
     }
 }
